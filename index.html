@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Общественное восприятие ИИ: опросы и Telegram, 2026</title>
+<title>Общественное восприятие ИИ: опросы 2025–2026 и Telegram</title>
 <style>
     :root {
       --bg:#f5f7fb;
@@ -149,6 +149,11 @@
   .result-row{display:grid;grid-template-columns:minmax(220px,.85fr) 2fr;gap:18px;padding:12px 0;border-bottom:1px solid var(--border)}
   .result-row:last-child{border-bottom:0}
   .survey-mode{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .survey-year-switch{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding:12px;background:#eef2f7;border-radius:14px}
+  .survey-year-btn{border:1px solid var(--border);background:#fff;color:var(--ink);border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .survey-year-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .survey-year-view{display:none}.survey-year-view.active{display:block}
+  .wave-table th:not(:first-child),.wave-table td:not(:first-child){text-align:center}
   .survey-mode button.active[data-survey-view="aggregate"]{background:var(--accent);border-color:var(--accent)}
   .survey-mode button.active[data-survey-view="a"]{background:var(--survey-a);border-color:var(--survey-a)}
   .survey-mode button.active[data-survey-view="b"]{background:var(--survey-b);border-color:var(--survey-b)}
@@ -175,6 +180,15 @@
   }
 
   .fill.survey-noexperience{background:#8c564b}
+  /* Общая палитра эмоциональных классов для Telegram и анкет. */
+  :root{--emotion-neutral:#667085;--emotion-undetermined:#9467bd;--emotion-joy:#c58b39;--emotion-interest:#4c78a8;--emotion-fear:#b35656;--emotion-anger:#8f3f3f;--emotion-sadness:#7a79b8;--emotion-disgust:#6e948d;--emotion-noexperience:#8c564b}
+  .fill.survey-neutral{background:var(--emotion-neutral)}
+  .fill.survey-interest{background:var(--emotion-interest)}
+  .fill.survey-joy{background:var(--emotion-joy)}
+  .fill.survey-negative{background:var(--emotion-fear)}
+  .fill.survey-noexperience{background:var(--emotion-noexperience)}
+  .emotion-key{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:13px;color:var(--muted)}
+  .emotion-key span{display:inline-flex;align-items:center;gap:6px}
   .formula-line{
     padding:10px 12px;border:1px solid var(--border);border-radius:12px;
     background:#fbfcfe;margin:10px 0;font-size:14px
@@ -484,9 +498,9 @@
 <header class="hero">
 <div class="hero-grid">
 <div>
-<span class="tag a">Опрос ЕКП · N=1000 (далее — опрос А)</span>
-<span class="tag b">Опрос «Анкетолог» · N=500 (далее — опрос В)</span>
-<span class="tag s">Социальные сети · 62 411 постов с ветками комментариев</span>
+<span class="tag a">Опрос ЕКП · 2 × N=1000 (далее — опрос А)</span>
+<span class="tag b">Опрос «Анкетолог» · 2 × N=500 (далее — опрос В)</span>
+<span class="tag s">Telegram · 62 411 дискурсивных единиц</span>
 <h1>Сопоставление данных опросов и цифрового дискурса об ИИ</h1>
 <p class="lead">Данный отчёт сопоставляет декларируемые установки жителей Санкт-Петербурга на тему ИИ и особенности цифрового дискурса на эту тему.</p>
 </div>
@@ -504,31 +518,59 @@
 <main>
 <section class="tab-section active" id="overview">
 <div class="grid">
-<div class="card span-3">
-<div class="muted">Используют ИИ</div>
-<div class="metric">87,4%</div>
-<p class="small">Взвешенное среднее двух социологических опросов.</p>
+<div class="card span-12">
+<h2>Две волны опросов: 2025 и 2026 годы</h2>
+<div class="scroll"><table class="wave-table"><thead><tr><th>Сопоставимый показатель</th><th>2025</th><th>2026</th><th>Изменение</th></tr></thead><tbody>
+<tr><td>Могут объяснить, что такое ИИ</td><td>60,9%</td><td>67,5%</td><td><strong>+6,6 п.п.</strong></td></tr>
+<tr><td>Используют хотя бы одну технологию ИИ</td><td>86,5%</td><td>87,6%</td><td><strong>+1,1 п.п.</strong></td></tr>
+<tr><td>Баланс доверия · опрос А</td><td>+20,1 п.п.</td><td>+4,0 п.п.</td><td><strong>−16,1 п.п.</strong></td></tr>
+<tr><td>Баланс доверия · опрос В</td><td>+14,9 п.п.</td><td>+3,1 п.п.</td><td><strong>−11,8 п.п.</strong></td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:12px">Сводные доли рассчитаны как взвешенное среднее опросов А и В внутри каждой волны. Подробные результаты доступны на вкладке «Результаты опросов».</p>
+</div>
+<div class="card span-12">
+<span class="tag s">Telegram · аналитический срез 2025–2026</span>
+<h2>Корпус для сопоставления с двумя волнами опросов</h2>
+<p>Срез за январь 2025 — март 2026 года включает 23 892 публикации: 20 426 за 2025 год и 3 466 за первые три месяца 2026 года. Сумма значений поля количества комментариев для этих публикаций составляет 55 039; вместе с публикациями это 78 931 сообщение. Тематические доли рассчитаны для всех 23 892 публикаций с учётом доступного текста комментариев.</p>
+<div class="two-col" style="margin-top:14px">
+<div>
+<div class="bar-row"><span>Программирование и ИИ-агенты</span><div class="track"><div class="fill s" style="width:39.93%"></div></div><span class="value">39,9%</span></div>
+<div class="bar-row"><span>Инструменты и генеративные модели</span><div class="track"><div class="fill s" style="width:34.57%"></div></div><span class="value">34,6%</span></div>
+<div class="bar-row"><span>Работа, бизнес и автоматизация</span><div class="track"><div class="fill s" style="width:22.81%"></div></div><span class="value">22,8%</span></div>
+</div>
+<div>
+<div class="bar-row"><span>Генерация изображений, видео и аудио</span><div class="track"><div class="fill s" style="width:19.97%"></div></div><span class="value">20,0%</span></div>
+<div class="bar-row"><span>Обучение и освоение ИИ</span><div class="track"><div class="fill s" style="width:14.65%"></div></div><span class="value">14,7%</span></div>
+<div class="bar-row"><span>Риски, регулирование и доверие</span><div class="track"><div class="fill s" style="width:9.14%"></div></div><span class="value">9,1%</span></div>
+</div>
+</div>
+<p class="small" style="margin-top:12px">Категории размечены по тематическим маркерам; одна публикация может относиться к нескольким темам, поэтому доли не суммируются до 100%. Прикладные сценарии по отдельному правилу выделены в 32,3% публикаций.</p>
 </div>
 <div class="card span-3">
-<div class="muted">Используют ИИ в работе</div>
+<div class="muted">Используют ИИ · 2025–2026</div>
+<div class="metric">87,1%</div>
+<p class="small">Взвешенное среднее четырёх опросных массивов.</p>
+</div>
+<div class="card span-3">
+<div class="muted">Используют ИИ в работе · 2026</div>
 <div class="metric">19,5%</div>
-<p class="small">Взвешенное среднее двух социологических опросов.</p>
+<p class="small">Показатель расширенных профессиональных блоков волны 2026 года.</p>
 </div>
 <div class="card span-3">
-<div class="muted">Практические обсуждения</div>
-<div class="metric">74,0%</div>
-<p class="small">Доля дискуссий социальных медиа о прикладных сценариях использования ИИ.</p>
+<div class="muted">Практические обсуждения · 2025–2026</div>
+<div class="metric">32,3%</div>
+<p class="small">Доля публикаций с маркерами прикладного использования в полном срезе Telegram 2025–2026.</p>
 </div>
 <div class="card span-3">
-<div class="muted">Позитивные эмоции</div>
-<div class="metric">65,9%</div>
-<p class="small">Доля позитивных эмоций среди постов с выявленной эмоцией социальных медиа.</p>
+<div class="muted">Позитивные эмоции · 2025–2026</div>
+<div class="metric">64,6%</div>
+<p class="small">Доля позитивных эмоций среди сообщений с выявленной эмоцией в срезе Telegram.</p>
 </div>
 <div class="card span-12">
 <h2>Основные результаты</h2>
 <div class="result-list">
-<div class="result-row"><strong>Результаты анализа опросов</strong><span>ИИ широко используется в повседневной жизни, однако доверие зависит от сферы применения и особенно снижается в медицине.</span></div>
-<div class="result-row"><strong>Результаты анализа социальных медиа</strong><span>Публичные обсуждения сосредоточены на инструментах, генерации контента и практических сценариях; позитивный эмоциональный фон выражен сильнее, чем в опросах.</span></div>
+<div class="result-row"><strong>Результаты анализа опросов</strong><span>Между 2025 и 2026 годами доля способных объяснить, что такое ИИ, выросла с 60,9% до 67,5%, а доля использующих хотя бы одну технологию ИИ осталась высокой (86,5% и 87,6%). При этом баланс доверия снизился в обеих сериях опросов.</span></div>
+<div class="result-row"><strong>Результаты анализа социальных медиа</strong><span>В Telegram за 2025–2026 годы чаще всего встречаются темы программирования, ИИ-агентов и генеративных моделей; среди эмоционально маркированных публикаций преобладают положительные реакции.</span></div>
 <div class="result-row"><strong>Опасения, общие для двух источников</strong><span>В центре внимания находятся мошенничество и дипфейки, дезинформация, защита данных, последствия для занятости и вопросы этики.</span></div>
 <div class="result-row"><strong>Профессиональная сфера</strong><span>ИИ используется в работе значительно реже, чем в повседневных цифровых практиках.</span></div>
 <div class="result-row"><strong>Государственные сервисы</strong><span>Большинство предпочитает гибридный формат: помощь ИИ с возможностью обратиться к человеку.</span></div>
@@ -537,14 +579,14 @@
 </div>
 <div class="card span-12">
 <div class="callout good">
-      Изученный в социальных сетях дискурс не противоречит выводам, полученным при анализе данных опросов. Однако он показывает более активный слой аудитории, которая обсуждает практические сценарии взаимодействия с ИИ-инструментами. Поэтому позитивные эмоции выражены сильнее. Карта рисков — мошенничество, дезинформация, данные, занятость и этика — остаётся близкой к опросной.
+      Две волны опросов показывают сочетание высокой практической распространённости ИИ и снижения баланса доверия: в опросе А он изменился с +20,1 до +4,0 п.п., в опросе В — с +14,9 до +3,1 п.п. По сравнению с балансом доверия в опросах эмоционально маркированные публикации Telegram демонстрируют более позитивный баланс; при этом доля публикаций с прикладными маркерами ниже доли опрошенных, сообщивших об опыте использования ИИ. В тематической структуре обсуждения рисков Telegram заметнее регулирование, этика и право, а в ответах на вопросы опросов — данные, преступность и дезинформация.
     </div>
 </div>
 
 
 
 <div class="card social-emotion-card">
-<h2>Эмоциональный фон · данные социальных медиа</h2>
+<h2>Эмоциональный фон · Telegram · 2025–2026</h2>
 <div class="social-layout-wide">
 <div class="social-left">
 <div class="emotion-subpanel">
@@ -553,9 +595,11 @@
 <div class="donut" id="socialOverallDonut"></div>
 </div>
 <div class="pie-legend">
-<div class="pie-legend-row"><span class="swatch" style="background:#5d6b7f"></span><span>Нейтральная реакция</span><strong>46,7%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#8a6bbd"></span><span>Неопределённый эмоциональный регистр</span><strong>37,0%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#5f9d77"></span><span>Обсуждения с эмоцией</span><strong>16,3%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#667085"></span><span>Нейтральная реакция</span><strong>49,2%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#4c78a8"></span><span>Удивление и интерес</span><strong>2,9%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#c58b39"></span><span>Радость и энтузиазм</span><strong>8,6%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#b35656"></span><span>Негативные эмоции</span><strong>6,3%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#9467bd"></span><span>Неопределённый регистр</span><strong>33,0%</strong></div>
 </div>
 </div>
 </div>
@@ -564,65 +608,137 @@
 <div class="emotion-subtitle">Эмоции внутри обсуждений с эмоцией</div>
 <div class="emotion-bars">
 <div class="emotion-group-label">Позитивные эмоции</div>
-<div class="emotion-bar-row"><span>Радость, энтузиазм</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:49%;background:#c58b39"></div></div><strong>49,0%</strong></div>
-<div class="emotion-bar-row"><span>Удивление, интерес</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:16.9%;background:#4c78a8"></div></div><strong>16,9%</strong></div>
+<div class="emotion-bar-row"><span>Радость, энтузиазм</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:48.1%;background:#c58b39"></div></div><strong>48,1%</strong></div>
+<div class="emotion-bar-row"><span>Удивление, интерес</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:16.5%;background:#4c78a8"></div></div><strong>16,5%</strong></div>
 <div class="emotion-group-label">Негативные эмоции</div>
-<div class="emotion-bar-row"><span>Страх</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:18.5%;background:#b35656"></div></div><strong>18,5%</strong></div>
-<div class="emotion-bar-row"><span>Злость</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:7.9%;background:#8f3f3f"></div></div><strong>7,9%</strong></div>
-<div class="emotion-bar-row"><span>Грусть</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:6.7%;background:#7a79b8"></div></div><strong>6,7%</strong></div>
-<div class="emotion-bar-row"><span>Отвращение</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:1%;background:#6e948d"></div></div><strong>1,0%</strong></div>
+<div class="emotion-bar-row"><span>Страх</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:19.4%;background:#b35656"></div></div><strong>19,4%</strong></div>
+<div class="emotion-bar-row"><span>Злость</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:7.6%;background:#8f3f3f"></div></div><strong>7,6%</strong></div>
+<div class="emotion-bar-row"><span>Грусть</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:7.1%;background:#7a79b8"></div></div><strong>7,1%</strong></div>
+<div class="emotion-bar-row"><span>Отвращение</span><div class="emotion-bar-track"><div class="emotion-bar-fill" style="width:1.3%;background:#6e948d"></div></div><strong>1,3%</strong></div>
 </div>
-<p class="small emotion-note">Шесть эмоциональных классов рассчитаны только внутри 16,3% обсуждений, в которых модель выявила устойчивую эмоцию. Поэтому эти проценты суммируются до 100% внутри эмоциональной части, а не во всём корпусе.</p>
+<p class="small emotion-note">Шесть эмоциональных классов показаны среди публикаций с выявленным эмоциональным сигналом (17,8% аналитического среза). Нейтральные и неопределённые публикации представлены отдельно в распределении всех обсуждений.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="card survey-emotion-card">
-<h2>Эмоциональный фон · данные опроса</h2>
+<h2>Эмоции при использовании ИИ · опрос В · 2025–2026</h2>
 <div class="survey-pie-layout">
 <div class="donut-wrap">
 <div class="donut" id="surveyEmotionDonut"></div>
 </div>
 <div class="pie-legend">
-<div class="pie-legend-row"><span class="swatch" style="background:#6b7280"></span><span>Нейтральная реакция</span><strong>29,3%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#4c78a8"></span><span>Удивление и интерес</span><strong>25,5%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#c58b39"></span><span>Радость и энтузиазм</span><strong>18,9%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#8f6253"></span><span>Нет опыта использования</span><strong>18,4%</strong></div>
-<div class="pie-legend-row"><span class="swatch" style="background:#b35656"></span><span>Негативные эмоции</span><strong>7,9%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#667085"></span><span>Нейтральная реакция</span><strong>23,4%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#4c78a8"></span><span>Удивление и интерес</span><strong>29,4%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#c58b39"></span><span>Радость и энтузиазм</span><strong>20,0%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#8c564b"></span><span>Нет опыта использования</span><strong>19,9%</strong></div>
+<div class="pie-legend-row"><span class="swatch" style="background:#b35656"></span><span>Негативные эмоции</span><strong>7,3%</strong></div>
 </div>
 </div>
 </div>
+<div class="card span-12"><p class="small" style="margin:0">Одинаковые эмоциональные категории на диаграммах обозначены одинаковыми цветами. В Telegram доли рассчитаны от числа публикаций, в опросе В — от числа ответов на вопрос об эмоциях; в опросе А отдельного вопроса с набором эмоциональных реакций нет, поэтому его показатели доверия рассматриваются отдельно. «Неопределённый эмоциональный регистр» фиксирует слабые, разнонаправленные либо неоднозначные эмоциональные сигналы. По исследовательской функции эту категорию можно сопоставить с ответом «затрудняюсь ответить» как область неопределённости, но они не тождественны: в опросе это самооценка респондента, в корпусе — неопределённость интерпретации текста. Различие открывает возможность дальнейшего сравнительного анализа.</p></div>
 <div class="card span-6">
 <h3>Сводный индекс согласованности</h3>
 <p>Индекс объединяет три вида совпадения: практическое использование ИИ, доверительный фон и структуру рисков.</p>
 <div class="formula-line"><strong>Итог = 10% × практики + 40% × доверие + 50% × риски</strong></div>
 <div class="concordance-box">
-<span class="tag a">Опрос А × социальные медиа</span>
-<div class="component-line"><span>Близость практического использования</span><strong>81,0%</strong></div>
-<div class="component-line"><span>Близость доверительного фона</span><strong>94,1%</strong></div>
-<div class="component-line"><span>Сходство структуры рисков</span><strong>99,7%</strong></div>
-<div class="formula-line">10% × 0,810 + 40% × 0,941 + 50% × 0,997 = <strong>95,6%</strong></div>
+<span class="tag a">Опрос А · 2025–2026 × Telegram · 2025–2026</span>
+<div class="component-line"><span>Близость практического использования</span><strong>79,8%</strong></div>
+<div class="component-line"><span>Близость доверительного фона</span><strong>91,4%</strong></div>
+<div class="component-line"><span>Сходство структуры рисков</span><strong>89,5%</strong></div>
+<div class="formula-line">10% × 0,798 + 40% × 0,914 + 50% × 0,895 = <strong>89,3%</strong></div>
 </div>
 <div class="concordance-box" style="margin-top:12px">
-<span class="tag b">Опрос В × социальные медиа</span>
-<div class="component-line"><span>Близость практического использования</span><strong>93,3%</strong></div>
-<div class="component-line"><span>Близость доверительного фона</span><strong>85,6%</strong></div>
-<div class="component-line"><span>Сходство структуры рисков</span><strong>97,7%</strong></div>
-<div class="formula-line">10% × 0,933 + 40% × 0,856 + 50% × 0,977 = <strong>92,4%</strong></div>
+<span class="tag b">Опрос В · 2025–2026 × Telegram · 2025–2026</span>
+<div class="component-line"><span>Близость практического использования</span><strong>69,3%</strong></div>
+<div class="component-line"><span>Близость доверительного фона</span><strong>89,9%</strong></div>
+<div class="component-line"><span>Сходство структуры рисков</span><strong>83,8%</strong></div>
+<div class="formula-line">10% × 0,693 + 40% × 0,899 + 50% × 0,838 = <strong>84,8%</strong></div>
 </div>
 <p class="metric-explainer">100% означало бы полное совпадение трёх измерений; чем меньше значение, тем заметнее расхождение между опросом и дискурсом социальных медиа.</p>
 </div>
 <div class="card span-6">
 <h3>Сходство структуры рисков</h3>
 <div class="concordance-box">
-<div class="bar-row"><span>Опрос А × социальные медиа</span><div class="track"><div class="fill a" style="width:99.74%"></div></div><span class="value">99,7%</span></div>
-<div class="bar-row"><span>Опрос В × социальные медиа</span><div class="track"><div class="fill b" style="width:97.66%"></div></div><span class="value">97,7%</span></div>
+<div class="bar-row"><span>Опрос А × Telegram · 2025–2026</span><div class="track"><div class="fill a" style="width:89.53%"></div></div><span class="value">89,5%</span></div>
+<div class="bar-row"><span>Опрос В × Telegram · 2025–2026</span><div class="track"><div class="fill b" style="width:83.83%"></div></div><span class="value">83,8%</span></div>
 <p class="metric-explainer">Для каждого источника четыре группы опасений — данные, преступность и дезинформация, занятость, цифровой след и этика — сначала приводятся к сумме 100%, а затем сравниваются. 100% означало бы одинаковые пропорции.</p>
 </div>
 </div>
 </div>
 </section>
 <section class="tab-section" id="surveys">
+<div class="survey-year-switch" role="group" aria-label="Год опроса">
+<button class="survey-year-btn" data-survey-year="2025">2025</button>
+<button class="survey-year-btn active" data-survey-year="2026">2026</button>
+<button class="survey-year-btn" data-survey-year="both">2025–2026 · вместе</button>
+</div>
+<div class="survey-year-view" data-survey-year-panel="2025">
+<div class="survey-mode">
+<button class="survey-mode-btn active" data-survey-view="aggregate">Общая сводка</button>
+<button class="survey-mode-btn" data-survey-view="a">Опрос А · N=1000</button>
+<button class="survey-mode-btn" data-survey-view="b">Опрос В · N=500</button>
+</div>
+<div class="survey-view active" data-survey-panel="aggregate">
+<div class="grid">
+<div class="card span-12"><span class="tag">Волна 2025 · опрос А N=1000 · опрос В N=500</span><h2>Общие показатели использования</h2>
+<div class="bar-row"><span>Могут объяснить, что такое ИИ</span><div class="track"><div class="fill b" style="width:60.9%"></div></div><span class="value">60,9%</span></div>
+<div class="bar-row"><span>Используют хотя бы одну технологию ИИ</span><div class="track"><div class="fill b" style="width:86.5%"></div></div><span class="value">86,5%</span></div>
+<p class="small">Взвешенное среднее опросов А и В с учётом объёма выборок.</p></div>
+<div class="card span-12"><h2>Основные опасения</h2>
+<div class="bar-row"><span>Рост преступности с применением ИИ</span><div class="track"><div class="fill warn" style="width:55.3%"></div></div><span class="value">55,3%</span></div>
+<div class="bar-row"><span>Несанкционированный доступ к персональным данным</span><div class="track"><div class="fill survey-joy" style="width:51%"></div></div><span class="value">51,0%</span></div>
+<div class="bar-row"><span>Сокращение рабочих мест</span><div class="track"><div class="fill survey-interest" style="width:36.8%"></div></div><span class="value">36,8%</span></div>
+<div class="bar-row"><span>Снижение когнитивных способностей</span><div class="track"><div class="fill survey-neutral" style="width:34.8%"></div></div><span class="value">34,8%</span></div>
+<p class="small">Сводные значения рассчитаны по содержательно сопоставимым формулировкам двух анкет.</p></div>
+
+</div></div>
+<div class="survey-view" data-survey-panel="a"><div class="grid">
+<div class="card span-6"><span class="tag a">Опрос А · 2025 · N=1000</span><h2>Осведомлённость и использование</h2>
+<div class="bar-row"><span>Могут объяснить, что такое ИИ</span><div class="track"><div class="fill a" style="width:59%"></div></div><span class="value">59,0%</span></div>
+<div class="bar-row"><span>Используют хотя бы одну технологию</span><div class="track"><div class="fill a" style="width:84.8%"></div></div><span class="value">84,8%</span></div>
+<div class="bar-row"><span>Среднее число используемых технологий</span><div class="track"><div class="fill a" style="width:59.8%"></div></div><span class="value">2,99</span></div>
+<div class="bar-row"><span>Считают, что ИИ упрощает жизнь и работу</span><div class="track"><div class="fill a" style="width:58.9%"></div></div><span class="value">58,9%</span></div>
+<h3 style="margin-top:18px">Доверие</h3>
+<div class="bar-row"><span>Скорее доверяют</span><div class="track"><div class="fill a" style="width:45.1%"></div></div><span class="value">45,1%</span></div>
+<div class="bar-row"><span>Скорее не доверяют</span><div class="track"><div class="fill warn" style="width:25%"></div></div><span class="value">25,0%</span></div></div>
+
+<div class="card span-6"><span class="tag a">Опрос А · 2025</span><h2>Наиболее распространённые технологии</h2>
+<div class="bar-row"><span>Генеративные чат-боты</span><div class="track"><div class="fill a" style="width:52.6%"></div></div><span class="value">52,6%</span></div>
+<div class="bar-row"><span>Распознавание объектов и поиск по фото</span><div class="track"><div class="fill a" style="width:44.1%"></div></div><span class="value">44,1%</span></div>
+<div class="bar-row"><span>Генерация изображений</span><div class="track"><div class="fill a" style="width:43%"></div></div><span class="value">43,0%</span></div>
+<div class="bar-row"><span>Навигация и дорожные карты</span><div class="track"><div class="fill a" style="width:40.2%"></div></div><span class="value">40,2%</span></div>
+<h3 style="margin-top:18px">Главные опасения</h3>
+<div class="bar-row"><span>ИИ-преступность</span><div class="track"><div class="fill a" style="width:55.3%"></div></div><span class="value">55,3%</span></div>
+<div class="bar-row"><span>Утечки персональных данных</span><div class="track"><div class="fill a" style="width:49.7%"></div></div><span class="value">49,7%</span></div>
+<div class="bar-row"><span>Фейки и дезинформация</span><div class="track"><div class="fill a" style="width:46.9%"></div></div><span class="value">46,9%</span></div>
+<div class="bar-row"><span>Выход ИИ из-под контроля</span><div class="track"><div class="fill a" style="width:46.8%"></div></div><span class="value">46,8%</span></div></div>
+
+</div></div>
+<div class="survey-view" data-survey-panel="b"><div class="grid">
+<div class="card span-6"><span class="tag b">Опрос В · 2025 · N=500</span><h2>Осведомлённость и использование</h2>
+<div class="bar-row"><span>Могут объяснить, что такое ИИ</span><div class="track"><div class="fill b" style="width:64.7%"></div></div><span class="value">64,7%</span></div>
+<div class="bar-row"><span>Используют хотя бы одну технологию</span><div class="track"><div class="fill b" style="width:90%"></div></div><span class="value">90,0%</span></div>
+<h3 style="margin-top:18px">Эмоциональный фон</h3>
+<div class="bar-row"><span>Удивление и интерес</span><div class="track"><div class="fill survey-interest" style="width:33.3%"></div></div><span class="value">33,3%</span></div>
+<div class="bar-row"><span>Нет опыта использования</span><div class="track"><div class="fill survey-noexperience" style="width:21.3%"></div></div><span class="value">21,3%</span></div>
+<div class="bar-row"><span>Радость и энтузиазм</span><div class="track"><div class="fill survey-joy" style="width:21%"></div></div><span class="value">21,0%</span></div>
+<div class="bar-row"><span>Нейтральные реакции</span><div class="track"><div class="fill survey-neutral" style="width:17.5%"></div></div><span class="value">17,5%</span></div>
+<div class="bar-row"><span>Негативные эмоции</span><div class="track"><div class="fill survey-negative" style="width:6.8%"></div></div><span class="value">6,8%</span></div></div>
+
+<div class="card span-6"><span class="tag b">Опрос В · 2025</span><h2>Доверие по сферам</h2>
+<div class="bar-row"><span>Быт</span><div class="track"><div class="fill b" style="width:67%"></div></div><span class="value">3,35</span></div>
+<div class="bar-row"><span>Безопасность</span><div class="track"><div class="fill b" style="width:66.4%"></div></div><span class="value">3,32</span></div>
+<div class="bar-row"><span>Обучение</span><div class="track"><div class="fill b" style="width:63.2%"></div></div><span class="value">3,16</span></div>
+<div class="bar-row"><span>Медицина</span><div class="track"><div class="fill b" style="width:55.6%"></div></div><span class="value">2,78</span></div>
+<h3 style="margin-top:18px">Наиболее распространённые технологии</h3>
+<div class="bar-row"><span>Распознавание объектов и поиск по фото</span><div class="track"><div class="fill b" style="width:63.7%"></div></div><span class="value">63,7%</span></div>
+<div class="bar-row"><span>Генеративные чат-боты</span><div class="track"><div class="fill b" style="width:62.3%"></div></div><span class="value">62,3%</span></div>
+<div class="bar-row"><span>Умная бытовая техника</span><div class="track"><div class="fill b" style="width:59.5%"></div></div><span class="value">59,5%</span></div>
+<div class="bar-row"><span>Навигация и дорожные карты</span><div class="track"><div class="fill b" style="width:56.1%"></div></div><span class="value">56,1%</span></div></div>
+<div class="aggregate-line">Перед совместным анализом выполнена юстировка содержательно сопоставимых показателей. Специфические блоки анкет не используются для прямого сравнения волн.</div>
+</div></div></div>
+<div class="survey-year-view active" data-survey-year-panel="2026">
 <div class="survey-mode">
 <button class="survey-mode-btn active" data-survey-view="aggregate">Общая сводка</button>
 <button class="survey-mode-btn" data-survey-view="a">Опрос А · N=1000</button>
@@ -632,8 +748,8 @@
 <div class="grid">
 <div class="card span-12">
 <h2>Общие показатели использования</h2>
-<div class="bar-row"><span>Могут объяснить, что такое ИИ</span><div class="track"><div class="fill b" style="width:67.43%"></div></div><span class="value">67,4%</span></div>
-<div class="bar-row"><span>Используют ИИ</span><div class="track"><div class="fill b" style="width:87.40%"></div></div><span class="value">87,4%</span></div>
+<div class="bar-row"><span>Могут объяснить, что такое ИИ</span><div class="track"><div class="fill b" style="width:67.47%"></div></div><span class="value">67,5%</span></div>
+<div class="bar-row"><span>Используют ИИ</span><div class="track"><div class="fill b" style="width:87.60%"></div></div><span class="value">87,6%</span></div>
 <div class="bar-row"><span>Используют ИИ в профессиональной деятельности</span><div class="track"><div class="fill b" style="width:19.47%"></div></div><span class="value">19,5%</span></div>
 <div class="bar-row"><span>Считают, что ИИ влияет на их профессиональную сферу</span><div class="track"><div class="fill b" style="width:15.33%"></div></div><span class="value">15,3%</span></div>
 </div>
@@ -736,16 +852,37 @@
 </div>
 </div>
 </div>
+</div>
+<div class="survey-year-view" data-survey-year-panel="both"><div class="grid">
+<div class="card span-12"><h2>Обе волны вместе · 2025–2026</h2><p>В каждом году представлены два независимых опроса: А — N=1000, В — N=500. Доли для двухлетней сводки взвешены по объёму каждого массива: всего 2 × N=1000 и 2 × N=500.</p></div>
+<div class="card span-6"><h3>Общие показатели</h3>
+<div class="bar-row"><span>Могут объяснить ИИ</span><div class="track"><div class="fill b" style="width:64.2%"></div></div><span class="value">64,2%</span></div>
+<div class="bar-row"><span>Используют хотя бы одну технологию</span><div class="track"><div class="fill b" style="width:87.1%"></div></div><span class="value">87,1%</span></div>
+<p class="small">Общая сводка рассчитана по 3000 анкетам четырёх массивов. Доли округлены до десятых.</p></div>
+<div class="card span-6"><h3>Доверие · обе волны</h3>
+<div class="statline"><span>Опрос А · положительные / отрицательные</span><strong>42,2% / 30,2%</strong></div>
+<div class="statline"><span>Опрос В · положительные / отрицательные</span><strong>34,0% / 25,0%</strong></div>
+<div class="statline"><span>Суммарный баланс по четырём массивам</span><strong>+11,0 п.п.</strong></div>
+<p class="small">Доверие сначала приведено к сопоставимым положительным и отрицательным оценкам внутри каждого опроса; затем выполнено взвешивание по объёму выборки.</p></div>
+<div class="card span-12"><h3>Изменение между волнами</h3>
+<div class="scroll"><table class="wave-table"><thead><tr><th>Показатель</th><th>2025</th><th>2026</th><th>Разница</th></tr></thead><tbody>
+<tr><td>Могут объяснить ИИ</td><td>60,9%</td><td>67,5%</td><td>+6,6 п.п.</td></tr>
+<tr><td>Используют ИИ</td><td>86,5%</td><td>87,6%</td><td>+1,1 п.п.</td></tr>
+<tr><td>Баланс доверия · опрос А</td><td>+20,1 п.п.</td><td>+4,0 п.п.</td><td>−16,1 п.п.</td></tr>
+<tr><td>Баланс доверия · опрос В</td><td>+14,9 п.п.</td><td>+3,1 п.п.</td><td>−11,8 п.п.</td></tr>
+</tbody></table></div></div>
+</div></div>
 </section>
 <section class="tab-section" id="telegram">
 <div class="grid">
-<div class="card span-3"><div class="muted">Публичных каналов</div><div class="metric">72</div></div>
-<div class="card span-3"><div class="muted">Период сбора</div><div class="metric">2016–2026</div></div>
+<div class="card span-3"><div class="muted">Каналов в исследовании</div><div class="metric">72</div></div>
+<div class="card span-3"><div class="muted">Период сбора корпуса</div><div class="metric">2016–2026</div></div>
 <div class="card span-3"><div class="muted">Дискурсивных единиц</div><div class="metric">62 411</div></div>
 <div class="card span-3"><div class="muted">Токенов после обработки</div><div class="metric">2,99 млн</div></div>
 <div class="card span-12">
 <h2>Данные и единица анализа</h2>
-<p>Корпус собран из 72 публичных Telegram-каналов об искусственном интеллекте за период с мая 2016 по апрель 2026 года. Одна аналитическая единица объединяет пост и относящуюся к ней ветку комментариев. Пост задаёт тематический центр, а комментарии добавляют реакции, оценки и альтернативные интерпретации; при формировании текстового представления пост получает тройной вес.</p>
+<p>Исследовательский корпус сформирован на материалах 72 Telegram-каналов за период с мая 2016 по апрель 2026 года и включает 62 411 дискурсивных единиц. Единица анализа объединяет публикацию и связанные с ней комментарии: публикация задаёт тематический центр, комментарии отражают реакции и оценки аудитории. При построении совместного текстового представления публикация получает тройной вес по отношению к тексту комментариев (λ = 3).</p>
+<p class="small">Семь тематических кластеров включают 16 711 классифицированных документов; доли кластеров рассчитаны среди этих документов. Для сопоставления с двумя волнами опросов выделен временной срез Telegram за 2025–2026 годы (23 892 публикации); его тематические показатели рассчитаны по всем публикациям с учётом доступных комментариев.</p>
 </div>
 <div class="card span-7">
 <h2>Интерактивный профиль тематического кластера</h2>
@@ -762,6 +899,7 @@
 <p><strong>Среди постов с выявленной эмоцией:</strong></p>
 <div class="bar-row"><span>Позитивные эмоции среди постов с выявленной эмоцией</span><div class="track"><div class="fill good" style="width:65.86%"></div></div><span class="value">65,9%</span></div>
 <div class="bar-row"><span>Негативные эмоции среди постов с выявленной эмоцией</span><div class="track"><div class="fill warn" style="width:34.14%"></div></div><span class="value">34,1%</span></div>
+<p class="small">Неопределённый эмоциональный регистр отличается от нейтральных публикаций: он объединяет тексты, в которых эмоциональные признаки присутствуют, но не позволяют устойчиво выделить доминирующую эмоцию. В сравнении с опросными данными эта категория представляет самостоятельный потенциал для изучения неопределённости выраженной позиции, аналогично ответу «затрудняюсь ответить», но без отождествления автоматической интерпретации текста с самооценкой респондента.</p>
 </div>
 <div class="card span-12">
 <h2>Структура постов с выявленной эмоцией</h2>
@@ -792,11 +930,12 @@
 <div class="quality"><b>0,71</b><span class="small">Macro-F1 эмоциональной классификации</span></div>
 <div class="quality"><b>0,78</b><span class="small">Корреляция эмоциональных распределений</span></div>
 </div>
-<p style="margin-top:14px">Код аналитического модуля: <a href="https://github.com/ai-society-research/ai-discourse-analyzer" rel="noopener" target="_blank">github.com/ai-society-research/ai-discourse-analyzer</a></p></div>
+<p style="margin-top:14px"><strong>AIDA — разработанный в рамках проекта программный модуль для корпусного анализа ИИ-дискурса.</strong> Код, документация и примеры использования опубликованы в <a href="https://github.com/Frantsuzova/ai-discourse-analyzer" rel="noopener" target="_blank">репозитории модуля</a>. Установить опубликованный Python-пакет можно командой <code>pip install ai-discourse-analyzer</code> (<a href="https://pypi.org/project/ai-discourse-analyzer/" rel="noopener" target="_blank">страница пакета</a>).</p></div>
 </div>
 </section>
 <section class="tab-section" id="indices">
 <div class="grid">
+<div class="card span-12"><div class="callout"><strong>Опросные показатели объединяют волны 2025 и 2026 годов.</strong> Для их сопоставления используются публикации Telegram за 2025–2026 годы. В расчётах каждый год представлен отдельно внутри опросов А и В, затем результаты двух волн усреднены внутри каждой серии.</div></div>
 <div class="card span-12">
 <h2>Что именно измеряют индексы</h2><p>Три индекса отвечают на три вопроса: насколько публичное обсуждение практического использования ИИ соответствует данным опросов; насколько совпадает общий позитивный и негативный фон; насколько похожи состав и относительная значимость основных рисков.</p>
 <div class="three-col">
@@ -804,7 +943,7 @@
 <h3>1. Индекс практической информированности</h3>
 <div class="formula">I<sub>practice</sub> = S<sub>practice</sub> / Q<sub>practice</sub></div>
 <p><strong>S<sub>practice</sub></strong> — доля дискуссий в соцсетях, посвящённых практическому использованию ИИ.</p>
-<p><strong>Q<sub>practice</sub></strong> — опросный показатель, рассчитанный как доля способных объяснить ИИ × доля имеющих опыт использования.</p>
+<p><strong>Q<sub>practice</sub></strong> — среднее по двум волнам внутри серии опросов от произведения «доля способных объяснить ИИ × доля имеющих опыт использования».</p>
 <p class="small">Значение 1 означает одинаковую выраженность практического измерения; больше 1 — прикладные сценарии сильнее представлены в соцсетевом дискурсе.</p>
 </div>
 <div>
@@ -828,22 +967,22 @@
 <p>Вес практического измерения снижен, поскольку тематически отобранные ИИ-каналы заранее повышают долю прикладных обсуждений. Доверительный фон и структура рисков получают больший вес как показатели отношения к технологии.</p>
 </div>
 <div class="card span-6">
-<span class="tag a">Опрос А</span>
+<span class="tag a">Опрос А · 2025–2026</span>
 <h2>Расчёт по исходной формуле</h2>
-<div class="statline"><span>Практическая информированность</span><strong>1,346</strong></div>
-<div class="statline"><span>Доверительный фон</span><strong>1,586</strong></div>
-<div class="statline"><span>Сходство рисков</span><strong>0,997</strong></div>
-<div class="index-result" style="margin-top:12px"><div class="muted">Интегральная метрика M</div><div class="index-value">1,268</div></div>
+<div class="statline"><span>Практическая информированность</span><strong>0,615</strong></div>
+<div class="statline"><span>Доверительный фон</span><strong>2,422</strong></div>
+<div class="statline"><span>Сходство рисков</span><strong>0,895</strong></div>
+<div class="index-result" style="margin-top:12px"><div class="muted">Интегральная метрика M</div><div class="index-value">1,478</div></div>
 </div>
 <div class="card span-6">
-<span class="tag b">Опрос В</span>
+<span class="tag b">Опрос В · 2025–2026</span>
 <h2>Расчёт по исходной формуле</h2>
-<div class="statline"><span>Практическая информированность</span><strong>1,100</strong></div>
-<div class="statline"><span>Доверительный фон</span><strong>10,571</strong></div>
-<div class="statline"><span>Сходство рисков</span><strong>0,977</strong></div>
-<div class="index-result" style="margin-top:12px"><div class="muted">Формальный результат M</div><div class="index-value">4,827</div></div>
+<div class="statline"><span>Практическая информированность</span><strong>0,512</strong></div>
+<div class="statline"><span>Доверительный фон</span><strong>3,243</strong></div>
+<div class="statline"><span>Сходство рисков</span><strong>0,838</strong></div>
+<div class="index-result" style="margin-top:12px"><div class="muted">Формальный результат M</div><div class="index-value">1,768</div></div>
 <div class="callout warn" style="margin-top:12px">
-      В исследовании B положительные и отрицательные оценки почти уравновешены: 31,9% против 28,9%; чистая разница составляет только 3 процентных пункта. Поэтому любое небольшое изменение исходных долей резко меняет отношение S<sub>net</sub> / Q<sub>net</sub>. Значение 10,571 не означает, что доверие в соцсетях «в десять раз выше»: это эффект очень малого знаменателя. Для исследования B содержательно надёжнее использовать нормированную версию ниже.
+      Во второй волне опроса В положительные и отрицательные оценки почти уравновешены (31,9% против 28,8%). При объединении волн баланс равен +9,0 п.п.; отношение эмоциональных балансов всё ещё зависит от величины знаменателя и не означает кратного различия в доверии. Поэтому для сравнения источников ниже используется нормированная версия.
     </div>
 </div>
 <div class="card span-12">
@@ -854,18 +993,18 @@
 <div class="formula" style="margin-top:8px">M* = w<sub>p</sub>C<sub>practice</sub> + w<sub>t</sub>C<sub>trust</sub> + w<sub>r</sub>I<sub>risk</sub></div>
 <div class="two-col" style="margin-top:14px">
 <div class="index-result">
-<span class="tag a">A × соцсети</span>
-<div class="index-value">0,956</div>
-<div class="bar-row"><span>Практики</span><div class="track"><div class="fill a" style="width:80.96%"></div></div><span class="value">0,810</span></div>
-<div class="bar-row"><span>Доверие</span><div class="track"><div class="fill a" style="width:94.14%"></div></div><span class="value">0,941</span></div>
-<div class="bar-row"><span>Риски</span><div class="track"><div class="fill a" style="width:99.74%"></div></div><span class="value">0,997</span></div>
+<span class="tag a">A · 2025–2026 × Telegram · 2025–2026</span>
+<div class="index-value">0,893</div>
+<div class="bar-row"><span>Практики</span><div class="track"><div class="fill a" style="width:79.80%"></div></div><span class="value">0,798</span></div>
+<div class="bar-row"><span>Доверие</span><div class="track"><div class="fill a" style="width:91.43%"></div></div><span class="value">0,914</span></div>
+<div class="bar-row"><span>Риски</span><div class="track"><div class="fill a" style="width:89.53%"></div></div><span class="value">0,895</span></div>
 </div>
 <div class="index-result">
-<span class="tag b">B × соцсети</span>
-<div class="index-value">0,924</div>
-<div class="bar-row"><span>Практики</span><div class="track"><div class="fill b" style="width:93.30%"></div></div><span class="value">0,933</span></div>
-<div class="bar-row"><span>Доверие</span><div class="track"><div class="fill b" style="width:85.64%"></div></div><span class="value">0,856</span></div>
-<div class="bar-row"><span>Риски</span><div class="track"><div class="fill b" style="width:97.66%"></div></div><span class="value">0,977</span></div>
+<span class="tag b">B · 2025–2026 × Telegram · 2025–2026</span>
+<div class="index-value">0,848</div>
+<div class="bar-row"><span>Практики</span><div class="track"><div class="fill b" style="width:69.27%"></div></div><span class="value">0,693</span></div>
+<div class="bar-row"><span>Доверие</span><div class="track"><div class="fill b" style="width:89.91%"></div></div><span class="value">0,899</span></div>
+<div class="bar-row"><span>Риски</span><div class="track"><div class="fill b" style="width:83.83%"></div></div><span class="value">0,838</span></div>
 </div>
 </div>
 </div>
@@ -878,8 +1017,8 @@
 <div class="slider-box"><label for="wRisk">Риски: <span class="weight-value" id="wRiskVal">0,50</span></label><input id="wRisk" max="100" min="0" type="range" value="50"/></div>
 </div>
 <div class="two-col" style="margin-top:14px">
-<div class="callout"><strong>A × соцсети:</strong> <span id="scenarioA">0,956</span></div>
-<div class="callout"><strong>B × соцсети:</strong> <span id="scenarioB">0,924</span></div>
+<div class="callout"><strong>A · 2025–2026 × Telegram 2025–2026:</strong> <span id="scenarioA">0,893</span></div>
+<div class="callout"><strong>B · 2025–2026 × Telegram 2025–2026:</strong> <span id="scenarioB">0,848</span></div>
 </div>
 </div>
 <div class="card span-12">
@@ -887,21 +1026,21 @@
 <p>Эта модель не является прогнозом. Она позволяет проверить, как изменится согласованность с опросами, если публичный дискурс станет более или менее прикладным, позитивным или близким к опросной карте рисков. Например, снижение позитивного фона может моделировать кризисную повестку, а снижение сходства рисков — появление новой доминирующей угрозы.</p>
 <div class="sliders">
 <div class="slider-box">
-<label for="sPractice">Практические обсуждения: <span class="weight-value" id="sPracticeVal">74%</span></label>
-<input id="sPractice" max="100" min="0" type="range" value="74"/>
+<label for="sPractice">Практические обсуждения: <span class="weight-value" id="sPracticeVal">32%</span></label>
+<input id="sPractice" max="100" min="0" type="range" value="32"/>
 </div>
 <div class="slider-box">
-<label for="sPositive">Позитивные эмоции среди маркированных: <span class="weight-value" id="sPositiveVal">66%</span></label>
-<input id="sPositive" max="100" min="0" type="range" value="66"/>
+<label for="sPositive">Позитивные эмоции среди маркированных: <span class="weight-value" id="sPositiveVal">65%</span></label>
+<input id="sPositive" max="100" min="0" type="range" value="65"/>
 </div>
 <div class="slider-box">
-<label for="sRisk">Сходство карты рисков: <span class="weight-value" id="sRiskVal">99%</span></label>
-<input id="sRisk" max="100" min="0" type="range" value="99"/>
+<label for="sRisk">Сходство карты рисков: <span class="weight-value" id="sRiskVal">87%</span></label>
+<input id="sRisk" max="100" min="0" type="range" value="87"/>
 </div>
 </div>
 <div class="two-col" style="margin-top:14px">
-<div class="index-result"><span class="tag a">A × модель</span><div class="scenario-output" id="modelA">0,956</div></div>
-<div class="index-result"><span class="tag b">B × модель</span><div class="scenario-output" id="modelB">0,924</div></div>
+<div class="index-result"><span class="tag a">A · 2025–2026 × модель</span><div class="scenario-output" id="modelA">0,883</div></div>
+<div class="index-result"><span class="tag b">B · 2025–2026 × модель</span><div class="scenario-output" id="modelB">0,865</div></div>
 </div>
 <div aria-live="polite" class="scenario-note" id="modelNarrative"></div>
 </div>
@@ -954,15 +1093,15 @@
 <div class="scenario-note" id="mergedNarrative"></div>
 </div>
 <div class="card span-12">
-<h2>Входные значения</h2>
+<h2>Входные значения · опросы 2025–2026 × Telegram 2025–2026</h2>
 <div class="scroll">
 <table>
 <thead><tr><th>Компонент</th><th>Соцсети</th><th>Опрос А</th><th>Опрос В</th></tr></thead>
 <tbody>
-<tr><td>Практическая активность / опросный показатель</td><td>0,740</td><td>0,550</td><td>0,673</td></tr>
-<tr><td>Позитивные эмоции / положительные оценки</td><td>0,659</td><td>0,450</td><td>0,319</td></tr>
-<tr><td>Негативные эмоции / отрицательные оценки</td><td>0,341</td><td>0,250</td><td>0,289</td></tr>
-<tr><td>Чистый баланс</td><td>0,317</td><td>0,200</td><td>0,030</td></tr>
+<tr><td>Практическая активность / опросный показатель</td><td>0,323</td><td>0,525</td><td>0,630</td></tr>
+<tr><td>Позитивные эмоции / положительные оценки</td><td>0,646</td><td>0,422</td><td>0,340</td></tr>
+<tr><td>Негативные эмоции / отрицательные оценки</td><td>0,354</td><td>0,302</td><td>0,250</td></tr>
+<tr><td>Чистый баланс</td><td>0,292</td><td>0,121</td><td>0,090</td></tr>
 </tbody>
 </table>
 </div>
@@ -972,54 +1111,72 @@
 <section class="tab-section" id="synthesis">
 <div class="grid">
 <div class="card span-12">
-<h2>Сопоставление результатов</h2>
+<h2>Динамика опросных показателей: 2025 → 2026</h2>
+<div class="scroll"><table class="wave-table"><thead><tr><th>Показатель</th><th>Опрос А · 2025</th><th>Опрос А · 2026</th><th>Опрос В · 2025</th><th>Опрос В · 2026</th></tr></thead><tbody>
+<tr><td>Могут объяснить, что такое ИИ</td><td>59,0%</td><td>65,2%</td><td>64,7%</td><td>72,0%</td></tr>
+<tr><td>Используют хотя бы одну технологию</td><td>84,8%</td><td>84,3%</td><td>90,0%</td><td>94,2%</td></tr>
+<tr><td>Положительные оценки доверия</td><td>45,1%</td><td>39,3%</td><td>36,1%</td><td>31,9%</td></tr>
+<tr><td>Отрицательные оценки доверия</td><td>25,0%</td><td>35,3%</td><td>21,2%</td><td>28,8%</td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:12px">Динамика рассчитывается отдельно внутри каждой серии опросов. Ниже обе волны каждой серии объединены для сопоставления с Telegram за те же годы.</p>
+</div>
+<div class="card span-12">
+<h2>Telegram-срез и обе волны опросов</h2>
+<div class="scroll"><table class="wave-table"><thead><tr><th>Сопоставимый показатель</th><th>Telegram · 2025–2026</th><th>Опрос А · 2025</th><th>Опрос А · 2026</th><th>Опрос В · 2025</th><th>Опрос В · 2026</th></tr></thead><tbody>
+<tr><td>Практическая активность</td><td><strong>32,3%</strong></td><td>50,0%</td><td>55,0%</td><td>58,2%</td><td>67,8%</td></tr>
+<tr><td>Позитивный баланс</td><td><strong>+29,2 п.п.</strong></td><td>+20,1 п.п.</td><td>+4,0 п.п.</td><td>+14,9 п.п.</td><td>+3,1 п.п.</td></tr>
+</tbody></table></div>
+<p class="small" style="margin-top:12px">Практическая активность в опросах рассчитана как произведение доли респондентов, способных объяснить ИИ, и доли имеющих опыт использования. Позитивный баланс равен разности положительных и отрицательных оценок.</p>
+</div>
+<div class="card span-12">
+<h2>Сопоставление результатов · опросы и Telegram 2025–2026</h2>
 <div class="plain-list">
 <div class="plain-item">
 <strong>Практическое использование.</strong>
-        В социальных медиа прикладным сценариям посвящено 74,0% обсуждений. Опросный показатель составляет 55,0% для опроса A и 67,3% для опроса B. Он рассчитан как доля способных объяснить ИИ, умноженная на долю имеющих опыт использования.
+        В Telegram практические сценарии по тематическим маркерам найдены в 32,3% публикаций за 2025–2026 годы. В объединённых волнах опросный показатель составляет 52,5% для опроса А и 63,0% для опроса В. Для каждого опроса он рассчитывается как произведение доли способных объяснить ИИ и доли имеющих опыт использования; затем результаты двух лет усредняются. Это разные способы измерить присутствие практик, а не доли с одним и тем же знаменателем.
       </div>
 <div class="plain-item">
 <strong>Доверительный фон.</strong>
-        В социальных медиа позитивные эмоции превышают негативные на 31.7 процентного пункта. В опросе A положительные оценки превышают отрицательные на 20.0 п.п.; в опросе B — на 3.0 п.п.
+        В Telegram позитивные эмоции превышают негативные на 29,2 процентного пункта. В объединённых волнах положительные оценки доверия превышают отрицательные на 12,1 п.п. в опросе А и на 9,0 п.п. в опросе В.
       </div>
 <div class="plain-item">
 <strong>Структура рисков.</strong>
-        Сходство с социальными медиа составляет 0,997 для опроса A и 0,977 для опроса B. Значение 1 означало бы полностью одинаковые пропорции четырёх групп опасений.
+        Сходство с Telegram-срезом составляет 0,895 для объединённых волн опроса А и 0,838 для опроса В. Значение 1 означало бы полностью одинаковые пропорции четырёх групп опасений; эти категории совпадают, но их относительный вес различается.
       </div>
 </div>
 </div>
 <div class="card span-6">
-<h3>Дискурс социальных медиа более прикладной</h3>
-<div class="bar-row"><span>Социальные медиа</span><div class="track"><div class="fill s" style="width:74%"></div></div><span class="value">74,0%</span></div>
-<div class="bar-row"><span>Опросный показатель A</span><div class="track"><div class="fill a" style="width:54.96%"></div></div><span class="value">55,0%</span></div>
-<div class="bar-row"><span>Опросный показатель B</span><div class="track"><div class="fill b" style="width:67.30%"></div></div><span class="value">67,3%</span></div>
-<p class="small">Разница составляет +19.0 п.п. относительно опроса A и +6.7 п.п. относительно опроса B.</p>
+<h3>Выраженность практической тематики</h3>
+<div class="bar-row"><span>Telegram · 2025–2026</span><div class="track"><div class="fill s" style="width:32.3%"></div></div><span class="value">32,3%</span></div>
+<div class="bar-row"><span>Опросный показатель А · две волны</span><div class="track"><div class="fill a" style="width:52.50%"></div></div><span class="value">52,5%</span></div>
+<div class="bar-row"><span>Опросный показатель В · две волны</span><div class="track"><div class="fill b" style="width:63.03%"></div></div><span class="value">63,0%</span></div>
+<p class="small">Прикладные темы встречаются в Telegram на 20,2 п.п. реже, чем рассчитанный показатель опроса А, и на 30,7 п.п. реже, чем показатель опроса В; различие зависит от определений показателей.</p>
 </div>
 <div class="card span-6">
-<h3>Дискурс социальных медиа более позитивный</h3>
-<div class="bar-row"><span>Социальные медиа</span><div class="track"><div class="fill social-positive" style="width:31.71%"></div></div><span class="value">+31.7 п.п.</span></div>
-<div class="bar-row"><span>Опрос А</span><div class="track"><div class="fill a" style="width:20.00%"></div></div><span class="value">+20.0 п.п.</span></div>
-<div class="bar-row"><span>Опрос В</span><div class="track"><div class="fill b" style="width:3.00%"></div></div><span class="value">+3.0 п.п.</span></div>
-<p class="small">Во всех трёх случаях показатель равен доле позитивных оценок минус доля негативных.</p>
+<h3>Эмоциональный сигнал Telegram и баланс доверия в опросах</h3>
+<div class="bar-row"><span>Telegram · 2025–2026</span><div class="track"><div class="fill social-positive" style="width:29.19%"></div></div><span class="value">+29,2 п.п.</span></div>
+<div class="bar-row"><span>Опрос А · две волны</span><div class="track"><div class="fill a" style="width:12.05%"></div></div><span class="value">+12,1 п.п.</span></div>
+<div class="bar-row"><span>Опрос В · две волны</span><div class="track"><div class="fill b" style="width:9%"></div></div><span class="value">+9,0 п.п.</span></div>
+<p class="small">Показатель рассчитан как разность позитивных и негативных эмоций в Telegram и как разность положительных и отрицательных оценок доверия в каждой серии опросов. Показатели отражают разные формы выражения отношения к ИИ.</p>
 </div>
 <div class="card span-12">
 <h3>Профили рисков, нормированные до суммы 1</h3>
 <div class="scroll">
 <table>
-<thead><tr><th>Категория</th><th>Социальные медиа</th><th>Опрос А</th><th>Опрос В</th></tr></thead>
+<thead><tr><th>Категория</th><th>Telegram 2025–2026</th><th>Опрос А · две волны</th><th>Опрос В · две волны</th></tr></thead>
 <tbody>
-<tr><td>Утечки данных</td><td>38%</td><td>40%</td><td>29,6%</td></tr>
-<tr><td>Преступность и дезинформация</td><td>34%</td><td>32%</td><td>31,4%</td></tr>
-<tr><td>Потеря рабочих мест</td><td>20%</td><td>18%</td><td>23,2%</td></tr>
-<tr><td>Цифровой след / этика и право</td><td>8%</td><td>10%</td><td>15,8%</td></tr>
+<tr><td>Утечки данных</td><td>13,3%</td><td>27,3%</td><td>24,7%</td></tr>
+<tr><td>Преступность и дезинформация</td><td>26,0%</td><td>27,6%</td><td>31,2%</td></tr>
+<tr><td>Потеря рабочих мест</td><td>12,7%</td><td>17,9%</td><td>23,0%</td></tr>
+<tr><td>Цифровой след / этика и право</td><td>48,0%</td><td>27,2%</td><td>21,0%</td></tr>
 </tbody>
 </table>
 </div>
-<p class="small">Проценты показывают не распространённость опасения среди всех людей, а внутреннюю структуру четырёх сопоставленных категорий: каждая колонка приведена к сумме 100%.</p>
+<p class="small">Проценты показывают не распространённость опасения среди всех людей, а структуру четырёх сопоставленных категорий. В опросах доли близких вариантов ответа внутри каждой категории сначала усреднены, затем четыре категории нормированы до 100% отдельно по каждому массиву и усреднены по двум волнам серии А или В. Telegram-колонка нормирована по числу публикаций с тематическими маркерами риска.</p>
 </div>
 <div class="card span-12">
 <div class="callout good">
-      Дискурс социальных медиа представляет более вовлечённую аудиторию, поэтому в нём выше доля практических тем и позитивный эмоциональный баланс. При этом относительная структура рисков остаётся близкой к результатам опросов.
+      В Telegram-срезе 2025–2026 годов позитивный эмоциональный сигнал выражен сильнее, чем положительный баланс доверия в двух объединённых волнах опросов; эти показатели отражают различные способы измерения отношения к ИИ. Доля публикаций с маркерами практических сценариев ниже расчётного показателя осведомлённости и опыта использования в опросах. Структура обсуждаемых рисков частично совпадает с опросной, но относительный вес категорий различается.
     </div>
 </div>
 <div class="card span-12">
@@ -1035,7 +1192,7 @@
 <script>
   const clusters = [{"id": "Кл.2", "label": "midjourney / chatgpt / промпты", "size": 4768, "share": 28.532104601759322, "neutral": 26.9, "undetermined": 60.6, "emotional": 12.5, "positive_emotional": 72.52931323283082, "negative_emotional": 27.470686767169177, "tokens": ["midjourney", "chatgpt", "промпт", "изображение", "bot", "llm", "openai", "claude"], "note": "Инструментальный кластер вокруг промптов, генерации изображений и ботов. Здесь много неопределённого эмоционального регистра: тексты часто рекламные или инструктивные, но эмоциональный тон выражен неустойчиво."}, {"id": "Кл.1", "label": "идеи / взаимодействие / ИИ", "size": 3437, "share": 20.56729100592424, "neutral": 47.8, "undetermined": 20.5, "emotional": 31.7, "positive_emotional": 71.00917431192661, "negative_emotional": 28.990825688073397, "tokens": ["пост", "результат", "понимать", "читать", "код", "идея", "почему"], "note": "Общий дискуссионный кластер с самой высокой долей эмоционально маркированных публикаций. В нём соединяются объяснение, реакция и оценка."}, {"id": "Кл.3", "label": "компании / задачи / openai", "size": 2730, "share": 16.336544790856323, "neutral": 90.2, "undetermined": 5.1, "emotional": 4.7, "positive_emotional": 38.28125, "negative_emotional": 61.71875, "tokens": ["компания", "задача", "openai", "данные", "инструмент", "агент", "система", "llm"], "note": "Корпоративно-технический кластер. Дискурс в основном информационный, поэтому здесь очень высока доля нейтральных документов."}, {"id": "Кл.4", "label": "роботы / chatgpt / персонажи", "size": 2322, "share": 13.895039195739333, "neutral": 19.4, "undetermined": 60.9, "emotional": 19.7, "positive_emotional": 52.078774617067836, "negative_emotional": 47.921225382932164, "tokens": ["робот", "chatgpt", "бот", "персонаж", "игра", "экран", "цена", "смартфон"], "note": "Кластер персонифицированных и мемных сюжетов. Эмоциональность заметна, но часто выражена косвенно, через образы, шутку или персонажность."}, {"id": "Кл.6", "label": "видео / генерация / runway", "size": 1516, "share": 9.071868828915086, "neutral": 46.7, "undetermined": 37.4, "emotional": 15.9, "positive_emotional": 81.74273858921163, "negative_emotional": 18.25726141078838, "tokens": ["видео", "генерация", "runway", "sora", "изображение", "анимация", "кадр", "промпт"], "note": "Кластер генерации видео и медиаконтента. Он соединяет практические описания с удивлением, новизной и неопределённостью вокруг сгенерированных образов."}, {"id": "Кл.5", "label": "технологии / Россия / системы", "size": 1372, "share": 8.210160971814972, "neutral": 80.7, "undetermined": 12.5, "emotional": 6.9, "positive_emotional": 35.1063829787234, "negative_emotional": 64.8936170212766, "tokens": ["технология", "Россия", "система", "развитие", "компания", "данные", "учёный", "создать"], "note": "Институциональный и технологический кластер. Он ближе к новостному и описательному регистру, поэтому эмоциональная маркированность здесь низкая."}, {"id": "Кл.0", "label": "нейронки / изображения / бесплатные инструменты", "size": 566, "share": 3.386990604990725, "neutral": 27.6, "undetermined": 51.1, "emotional": 21.4, "positive_emotional": 60.33057851239669, "negative_emotional": 39.66942148760331, "tokens": ["нейронка", "изображение", "бесплатно", "фон", "сервис", "промт", "секунда", "объект"], "note": "Небольшой прикладной кластер про сервисы и визуальные инструменты. В нём заметна смесь продвижения, полезности и эмоционально окрашенного описания."}];
   const radarSeries = [{"name": "Удивление, интерес", "values": [11.892797319932999, 16.513761467889907, 18.75, 19.474835886214443, 24.066390041493776, 15.957446808510639, 19.00826446280992]}, {"name": "Радость, энтузиазм", "values": [60.63651591289782, 54.4954128440367, 19.53125, 32.60393873085339, 57.67634854771784, 19.148936170212767, 41.32231404958678]}, {"name": "Страх", "values": [8.542713567839195, 13.761467889908257, 55.46875, 27.35229759299781, 7.053941908713693, 60.638297872340424, 27.272727272727273]}, {"name": "Злость", "values": [13.73534338358459, 5.779816513761468, 0.78125, 10.722100656455142, 4.979253112033195, 1.0638297872340425, 6.6115702479338845]}, {"name": "Грусть", "values": [5.025125628140704, 7.339449541284404, 4.6875, 9.62800875273523, 5.394190871369295, 3.1914893617021276, 5.785123966942149]}, {"name": "Отвращение", "values": [0.16750418760469013, 2.110091743119266, 0.78125, 0.2188183807439825, 0.8298755186721992, 0.0, 0.0]}];
-  const dataBundle = {"a": {"q_practice": 0.549636, "q_net": 0.2, "risk_similarity": 0.9973856164418642, "c_practice": 0.809636, "c_trust": 0.9414375177919455, "overall": 0.9562314153377103, "aware": 0.652, "use": 0.843, "trust_positive": 0.45, "trust_negative": 0.25, "risk": [0.4, 0.32, 0.18, 0.1]}, "b": {"q_practice": 0.672984, "q_net": 0.030000000000000027, "risk_similarity": 0.976595406556773, "c_practice": 0.932984, "c_trust": 0.8564375177919455, "overall": 0.9241711103951648, "aware": 0.719, "use": 0.936, "trust_positive": 0.319, "trust_negative": 0.289, "risk": [0.296, 0.314, 0.232, 0.158]}, "social": {"practice": 0.74, "net": 0.31712496441610893, "tone_score": 0.6585624822080545, "risk": [0.38, 0.34, 0.2, 0.08], "neutral": 0.46734474298366346, "undetermined": 0.36951893962060917, "emotional": 0.16325228891149543, "positive": 0.6585624822080546, "negative": 0.34143751779194564}};
+  const dataBundle = {"a": {"q_practice": 0.524978, "q_net": 0.1205, "risk_similarity": 0.8953490999053121, "c_practice": 0.798022, "c_trust": 0.9143046239424283, "overall": 0.8931985995296274, "aware": 0.621, "use": 0.8455, "trust_positive": 0.422, "trust_negative": 0.3015, "risk": [0.27286, 0.27595, 0.1794, 0.27179]}, "b": {"q_practice": 0.63027, "q_net": 0.09, "risk_similarity": 0.8382923717777485, "c_practice": 0.69273, "c_trust": 0.8990546239424283, "overall": 0.8480410354658456, "aware": 0.6835, "use": 0.921, "trust_positive": 0.34, "trust_negative": 0.25, "risk": [0.24749, 0.31181, 0.23044, 0.21026]}, "social": {"practice": 0.323, "net": 0.2918907521151435, "tone_score": 0.6459453760575717, "risk": [0.1327, 0.2604, 0.1271, 0.4798], "neutral": 0.491838343, "undetermined": 0.3300909829406986, "emotional": 0.17807067424857838, "positive": 0.6459453760575717, "negative": 0.3540546239424283}};
 
   // ---------- Basic navigation ----------
   const tabs = [...document.querySelectorAll('.tab')];
@@ -1049,13 +1206,22 @@
     });
   });
 
-  const surveyModeButtons = [...document.querySelectorAll('.survey-mode-btn')];
-  const surveyViews = [...document.querySelectorAll('.survey-view')];
-  surveyModeButtons.forEach(button => {
+  document.querySelectorAll('.survey-year-view').forEach(yearView => {
+    const modeButtons = [...yearView.querySelectorAll('.survey-mode-btn')];
+    const modeViews = [...yearView.querySelectorAll('.survey-view')];
+    modeButtons.forEach(button => button.addEventListener('click', () => {
+      modeButtons.forEach(item => item.classList.toggle('active', item === button));
+      modeViews.forEach(view => view.classList.toggle('active', view.dataset.surveyPanel === button.dataset.surveyView));
+    }));
+  });
+
+  const surveyYearButtons = [...document.querySelectorAll('.survey-year-btn')];
+  const surveyYearViews = [...document.querySelectorAll('.survey-year-view')];
+  surveyYearButtons.forEach(button => {
     button.addEventListener('click', () => {
-      surveyModeButtons.forEach(item => item.classList.remove('active'));
+      surveyYearButtons.forEach(item => item.classList.remove('active'));
       button.classList.add('active');
-      surveyViews.forEach(view => view.classList.toggle('active', view.dataset.surveyPanel === button.dataset.surveyView));
+      surveyYearViews.forEach(view => view.classList.toggle('active', view.dataset.surveyYearPanel === button.dataset.surveyYear));
     });
   });
 
@@ -1082,17 +1248,19 @@
   }
 
   setConicPie(document.getElementById('surveyEmotionDonut'), [
-    {value:29.3, color:'#6b7280'},
-    {value:25.5, color:'#4c78a8'},
-    {value:18.9, color:'#c58b39'},
-    {value:18.4, color:'#8f6253'},
-    {value:7.9, color:'#b35656'}
+    {value:23.41944, color:'#667085'},
+    {value:29.43485, color:'#4c78a8'},
+    {value:19.95148, color:'#c58b39'},
+    {value:19.85158, color:'#8c564b'},
+    {value:7.34265, color:'#b35656'}
   ]);
 
   setConicPie(document.getElementById('socialOverallDonut'), [
-    {value:46.726541, color:'#5d6b7f'},
-    {value:37.017086, color:'#8a6bbd'},
-    {value:16.256373, color:'#5f9d77'}
+    {value:49.183834, color:'#667085'},
+    {value:2.930220, color:'#4c78a8'},
+    {value:8.572174, color:'#c58b39'},
+    {value:6.304674, color:'#b35656'},
+    {value:33.009098, color:'#9467bd'}
   ]);
 
   // ---------- Cluster selector ----------
@@ -1257,7 +1425,7 @@
 
   function modelFor(survey, practice, positive, riskSimilarity, weights) {
     const socialNet = positive - (1 - positive);
-    const surveyPractice = survey.aware * survey.use;
+    const surveyPractice = survey.q_practice;
     const surveyTrustNet = survey.trust_positive - survey.trust_negative;
     const practiceConcordance = 1 - Math.abs(practice - surveyPractice);
     const trustConcordance = 1 - Math.abs(socialNet - surveyTrustNet) / 2;
