@@ -36,17 +36,22 @@
     p{margin:0 0 12px}
     .lead{font-size:18px;color:var(--muted);max-width:970px}
     .hero{
-      background:linear-gradient(135deg,#f7f9ff,#eef4ff);
-      border:1px solid #dfe7ff;border-radius:24px;padding:28px 30px;
-      box-shadow:var(--shadow)
+      background:radial-gradient(circle at 92% 10%,rgba(204,220,255,.55),transparent 38%),linear-gradient(135deg,#fbfcff,#eef4ff);
+      border:1px solid #dce5ff;border-radius:24px;padding:32px 34px;
+      box-shadow:0 16px 38px rgba(30,48,80,.07)
     }
     .hero-grid{display:grid;grid-template-columns:1.5fr .7fr;gap:20px;align-items:end}
     .hero-note{padding:15px 16px;border:1px solid #dce5ff;border-radius:15px;background:rgba(255,255,255,.7)}
     .controls{
-      position:sticky;top:0;z-index:30;background:rgba(245,247,251,.95);
-      backdrop-filter:blur(10px);padding:12px 0 14px;margin:18px 0 14px
+      position:sticky;top:8px;z-index:30;background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);padding:7px;margin:18px 0 16px;
+      border:1px solid var(--border);border-radius:19px;
+      box-shadow:0 8px 24px rgba(30,48,80,.06)
     }
-    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+    .tabs .tab{border:0;border-radius:13px;background:transparent;font-size:14px;font-weight:600;padding:12px 8px;line-height:1.3}
+    .tabs .tab:hover{background:#eff3ff}
+    .tabs .tab.active,.tabs .tab.active:hover{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(47,91,238,.2)}
     button{
       appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);
       border-radius:999px;padding:9px 13px;font:inherit;cursor:pointer
@@ -124,6 +129,8 @@
     .weight-value{font-variant-numeric:tabular-nums;font-weight:700}
     .footer{margin-top:25px;color:var(--muted);font-size:13px}
     @media(max-width:900px){
+      .hero{padding:25px 22px}
+      .tabs{grid-template-columns:repeat(5,minmax(165px,1fr));overflow-x:auto}
       .hero-grid,.two-col,.three-col,.quality-grid,.sliders{grid-template-columns:1fr}
       .span-3,.span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 12}
       .bar-row{grid-template-columns:1fr 74px}
@@ -881,8 +888,8 @@
 <div class="card span-3"><div class="muted">Токенов после обработки</div><div class="metric">2,99 млн</div></div>
 <div class="card span-12">
 <h2>Данные и единица анализа</h2>
-<p>Исследовательский корпус сформирован на материалах 72 Telegram-каналов за период с мая 2016 по апрель 2026 года и включает 62 411 дискурсивных единиц. Единица анализа объединяет публикацию и связанные с ней комментарии: публикация задаёт тематический центр, комментарии отражают реакции и оценки аудитории. При построении совместного текстового представления публикация получает тройной вес по отношению к тексту комментариев (λ = 3).</p>
-<p class="small">Семь тематических кластеров включают 16 711 классифицированных документов; доли кластеров рассчитаны среди этих документов. Для сопоставления с двумя волнами опросов выделен временной срез Telegram за 2025–2026 годы (23 892 публикации); его тематические показатели рассчитаны по всем публикациям с учётом доступных комментариев.</p>
+<p>Исследовательский корпус сформирован на материалах 72 Telegram-каналов за период с мая 2016 по апрель 2026 года и включает 62 411 дискурсивных единиц. Единица анализа объединяет публикацию и связанные с ней комментарии: публикация задаёт тематический центр, комментарии отражают реакции и оценки аудитории.</p>
+<p class="small">Тематический и эмоциональный анализ проведён по всему исследовательскому корпусу из 62 411 дискурсивных единиц. Семь тематических кластеров отражают основные направления обсуждения ИИ. Для сопоставления с двумя волнами опросов выделен временной срез Telegram за 2025–2026 годы (23 892 публикации); его тематические показатели рассчитаны по всем публикациям с учётом доступных комментариев.</p>
 </div>
 <div class="card span-7">
 <h2>Интерактивный профиль тематического кластера</h2>
@@ -910,12 +917,12 @@
 </div>
 </div>
 <div class="card span-12">
-<h2>Размер и эмоциональность кластеров</h2>
+<h2>Тематика и эмоциональность кластеров</h2>
 <div class="scroll">
 <table>
-<thead><tr><th>Кластер</th><th>Размер</th><th>Доля слоя</th><th>Нейтральные</th><th>Неопределённые</th><th>Эмоциональные</th></tr></thead>
+<thead><tr><th>Кластер</th><th>Доля кластера</th><th>Нейтральные</th><th>Неопределённые</th><th>Эмоциональные</th></tr></thead>
 <tbody>
-<tr><td>midjourney / chatgpt / промпты</td><td>4,768</td><td>28.5%</td><td>26.9%</td><td>60.6%</td><td>12.5%</td></tr><tr><td>идеи / взаимодействие / ИИ</td><td>3,437</td><td>20.6%</td><td>47.8%</td><td>20.5%</td><td>31.7%</td></tr><tr><td>компании / задачи / openai</td><td>2,730</td><td>16.3%</td><td>90.2%</td><td>5.1%</td><td>4.7%</td></tr><tr><td>роботы / chatgpt / персонажи</td><td>2,322</td><td>13.9%</td><td>19.4%</td><td>60.9%</td><td>19.7%</td></tr><tr><td>видео / генерация / runway</td><td>1,516</td><td>9.1%</td><td>46.7%</td><td>37.4%</td><td>15.9%</td></tr><tr><td>технологии / Россия / системы</td><td>1,372</td><td>8.2%</td><td>80.7%</td><td>12.5%</td><td>6.9%</td></tr><tr><td>нейронки / изображения / бесплатные инструменты</td><td>566</td><td>3.4%</td><td>27.6%</td><td>51.1%</td><td>21.4%</td></tr>
+<tr><td>midjourney / chatgpt / промпты</td><td>28.5%</td><td>26.9%</td><td>60.6%</td><td>12.5%</td></tr><tr><td>идеи / взаимодействие / ИИ</td><td>20.6%</td><td>47.8%</td><td>20.5%</td><td>31.7%</td></tr><tr><td>компании / задачи / openai</td><td>16.3%</td><td>90.2%</td><td>5.1%</td><td>4.7%</td></tr><tr><td>роботы / chatgpt / персонажи</td><td>13.9%</td><td>19.4%</td><td>60.9%</td><td>19.7%</td></tr><tr><td>видео / генерация / runway</td><td>9.1%</td><td>46.7%</td><td>37.4%</td><td>15.9%</td></tr><tr><td>технологии / Россия / системы</td><td>8.2%</td><td>80.7%</td><td>12.5%</td><td>6.9%</td></tr><tr><td>нейронки / изображения / бесплатные инструменты</td><td>3.4%</td><td>27.6%</td><td>51.1%</td><td>21.4%</td></tr>
 </tbody>
 </table>
 </div>
@@ -1271,7 +1278,7 @@
     clusters.forEach((cluster, index) => {
       const option = document.createElement('option');
       option.value = String(index);
-      option.textContent = `${cluster.id} · ${cluster.label} · ${cluster.size.toLocaleString('ru-RU')}`;
+      option.textContent = `${cluster.id} · ${cluster.label}`;
       clusterSelect.appendChild(option);
     });
   }
@@ -1280,7 +1287,7 @@
     if (!clusterSelect || !clusterDetail) return;
     const cluster = clusters[Number(clusterSelect.value) || 0];
     clusterDetail.innerHTML = `
-      <div class="statline"><span>Размер</span><strong>${cluster.size.toLocaleString('ru-RU')} · ${cluster.share.toFixed(1).replace('.', ',')}% кластерного слоя</strong></div>
+      <div class="statline"><span>Доля кластера</span><strong>${cluster.share.toFixed(1).replace('.', ',')}%</strong></div>
       <div class="cluster-composition" aria-label="Эмоциональная композиция кластера">
         <div class="seg-neutral" style="width:${cluster.neutral}%"></div>
         <div class="seg-und" style="width:${cluster.undetermined}%"></div>
